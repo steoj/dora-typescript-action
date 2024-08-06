@@ -92,6 +92,7 @@ typings/
 
 # OS metadata
 .DS_Store
+**/.DS_Store
 Thumbs.db
 
 # Ignore built ts files
@@ -101,3 +102,5 @@ __tests__/runner/*
 .idea
 .vscode
 *.code-workspace
+# stryker temp files
+.stryker-tmp

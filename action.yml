@@ -1,24 +1,41 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
-
-# Add your action's branding here. This will appear on the GitHub Marketplace.
+name: 'DevOps Metrics from GitHub'
+author: 'Sten Otto Johnsen'
+description: 'Outputs a set of key metrics based on GitHub issues and releases'
 branding:
-  icon: 'heart'
-  color: 'red'
-
-# Define your inputs here.
+  icon: 'align-justify'
+  color: 'green'
 inputs:
-  milliseconds:
-    description: 'Your input description here'
-    required: true
-    default: '1000'
-
-# Define your outputs here.
+  owner: # organization
+    description: 'Owner of the repo. Org or user'
+    required: false
+  repo: # repository
+    description: 'Repository name'
+    required: false
+  token: # repository
+    description: 'Repository access token'
+    required: false
+  logging: # history
+    description: 'Logging and making the log available when true'
+    required: false
+  filtered:
+    description: 'Filtering only feat and fix as basis for lead time'
+    required: false
 outputs:
-  time:
-    description: 'Your output description here'
+  deploy-rate: # pull requests merged to main per week
+    description: 'Deployment rate (deploys/week)'
+
+  lead-time: # Average time between first commit on a feature and its deployment into production
+    description: 'Feature lead-time (days)'
+
+  change-failure-rate: # Percentage of releases causing an Issue tagged with "bug"
+    description: 'Change failure rate (%)'
+
+  mttr: # Average time between releases where "bug" is created and closed
+    description: 'Mean time to restore (days)'
+
+  deploy-rate-log: # list of releases that forms the basis of the deployment rate
+    description: 'Release log if logging true'
 
 runs:
-  using: node20
-  main: dist/index.js
+  using: 'node20'
+  main: 'dist/index.js'
